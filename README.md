@@ -6,6 +6,30 @@ This repository contains a sealed demo of a two-device edge AI video stream syst
 
 The demo is designed for the required assessment format: code repository, necessary documentation, and a real demo video. No report or PPT is required in this repository.
 
+## Demo Preview
+
+[![Web dashboard preview](media/web_demo_screenshot.png)](media/demo_system_run.mp4)
+
+Click the screenshot above to open the recorded system demo video.
+
+Demo video: [`media/demo_system_run.mp4`](media/demo_system_run.mp4)
+
+Hardware setup: [`media/hardware_setup.jpg`](media/hardware_setup.jpg)
+
+## Demo Performance Snapshot
+
+The following values come from the sealed demo logs and runtime summary. They describe this recorded demo run under the current Wi-Fi/hotspot setting and are not a claim of guaranteed high-frame-rate performance.
+
+| Metric | Demo value |
+| ------------------------------ | ---------: |
+| Resolution | 640 × 360 |
+| Final frame ID | 218 |
+| Average FPS | 5.02 |
+| Average laptop AI latency | 37.34 ms |
+| Average JPEG frame size | 18.4 KB |
+| Detected faces in final frame | 1 |
+| Face confidence in final frame | 0.931 |
+
 ## Assessment Requirement Mapping
 
 | Requirement | How this project satisfies it |
@@ -18,6 +42,7 @@ The demo is designed for the required assessment format: code repository, necess
 | B runs neural-network-based AI | Laptop runs OpenCV YuNet pre-trained ONNX neural face detector |
 | Useful analysis results | Face count, bounding boxes, confidence scores, AI inference time, FPS estimate, annotated stream, and logs |
 | Code repository + documentation + demo video | Source code, setup files, `docs/`, sealed logs, screenshots, hardware photo, and demo video are included |
+| No report/PPT required | The repository focuses on source code, necessary documentation, sealed logs, screenshots, hardware photo, and recorded real-device demo video |
 
 ## Device Responsibilities
 
@@ -121,6 +146,12 @@ models/face_detection_yunet_2023mar.onnx
 
 This model is not self-trained in this project. It is used as an existing pre-trained neural-network-based face detector for the demo.
 
+## Third-party Model Note
+
+- The neural detector is the pre-trained OpenCV YuNet ONNX face detection model.
+- The model was not trained from scratch in this project.
+- The project contribution focuses on system integration, Raspberry Pi edge-side preprocessing, Wi-Fi frame transmission, laptop-side neural inference, dashboard visualization, and logging.
+
 ## Output
 
 The system outputs:
@@ -150,6 +181,16 @@ Demo media is stored in `media/`:
 - `media/hardware_setup.jpg`
 
 The video was captured from the real Raspberry Pi and laptop hardware test corresponding to this sealed repository state.
+
+## Further Improvements for Requirement 9
+
+This project already strengthens the demo in the directions usually expected by the additional improvement item:
+
+- Functionality: two-device video stream, edge preprocessing, laptop neural face detection, and annotated output.
+- Real-time behavior: FPS estimate, average FPS, AI latency, and frame size are measured and shown.
+- Practicality: browser dashboard, MJPEG annotated stream, screenshots, hardware photo, and recorded demo video are included.
+- Stability: fixed dashboard layout, rolling averages, key-frame saving, and CSV/JSON logs are used.
+- Security: a simple shared token is used for the local-network demo.
 
 ## Logs Explanation
 
