@@ -51,7 +51,7 @@ LAPTOP_IP = "10.253.24.73"
 The Pi script posts frames to:
 
 ```text
-http://<LAPTOP_IP>:5000/upload_frame
+http://YOUR_LAPTOP_IP:5000/upload_frame
 ```
 
 ## Expected Behavior

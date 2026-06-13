@@ -18,16 +18,9 @@ JPEG_QUALITY = 70
 TARGET_FPS = 5
 COLOR_MODE = "direct"
 ENABLE_ENHANCEMENT = True
-
-DEVICE_NAME = "raspberry_pi_4b_picamera2"
-
-# direct：你当前颜色正常的模式
-COLOR_MODE = "direct"
-
-# A 端轻量图像增强开关
-ENABLE_ENHANCEMENT = True
 ENHANCEMENT_MODE = "CLAHE_LAB_SHARPEN"
 
+DEVICE_NAME = "raspberry_pi_4b_picamera2"
 LOG_PATH = Path("client_stream_log.csv")
 
 if not LOG_PATH.exists():

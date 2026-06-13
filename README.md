@@ -106,7 +106,7 @@ This keeps the weaker device responsible for capture and initial computation whi
 Frames are sent from Raspberry Pi to laptop through Wi-Fi using HTTP POST:
 
 ```text
-http://<LAPTOP_IP>:5000/upload_frame
+http://YOUR_LAPTOP_IP:5000/upload_frame
 ```
 
 The example laptop IP in the Pi script is a local-network placeholder. Update `LAPTOP_IP` for the actual network before running. Do not store Wi-Fi passwords or private tokens in the repository.

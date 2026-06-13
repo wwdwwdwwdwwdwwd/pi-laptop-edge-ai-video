@@ -47,7 +47,7 @@ This model is used as a neural-network-based detector. It was not self-trained i
 
 The system outputs:
 
-- annotated MJPEG stream at `http://<laptop-ip>:5000/`
+- annotated MJPEG stream at `http://YOUR_LAPTOP_IP:5000/`
 - runtime stats dashboard in the same Flask page
 - JSON response from `/upload_frame`
 - CSV log of laptop-side detections
