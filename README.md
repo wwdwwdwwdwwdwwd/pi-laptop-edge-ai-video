@@ -12,23 +12,23 @@ The demo is designed for the required assessment format: code repository, necess
 
 Click the screenshot above to open the recorded system demo video.
 
-Demo video: [`media/demo_system_run.mp4`](media/demo_system_run.mp4)
-
-Hardware setup: [`media/hardware_setup.jpg`](media/hardware_setup.jpg)
+* Demo video: [`media/demo_system_run.mp4`](media/demo_system_run.mp4)
+* Hardware setup: [`media/hardware_setup.jpg`](media/hardware_setup.jpg)
+* Web dashboard screenshot: [`media/web_demo_screenshot.png`](media/web_demo_screenshot.png)
 
 ## Demo Performance Snapshot
 
-The following values come from the sealed demo logs and runtime summary. They describe this recorded demo run under the current Wi-Fi/hotspot setting and are not a claim of guaranteed high-frame-rate performance.
+The following values are from the archived demo logs in `logs/`. They describe one recorded local-network demo run and are not a claim of guaranteed production performance.
 
-| Metric | Demo value |
+| Metric                         | Demo value |
 | ------------------------------ | ---------: |
-| Resolution | 640 × 360 |
-| Final frame ID | 218 |
-| Average FPS | 5.02 |
-| Average laptop AI latency | 37.34 ms |
-| Average JPEG frame size | 18.4 KB |
-| Detected faces in final frame | 1 |
-| Face confidence in final frame | 0.931 |
+| Resolution                     |  640 × 360 |
+| Final frame ID                 |        218 |
+| Average FPS                    |       5.02 |
+| Average laptop AI latency      |   37.34 ms |
+| Average JPEG frame size        |    18.4 KB |
+| Detected faces in final frame  |          1 |
+| Face confidence in final frame |      0.931 |
 
 ## Assessment Requirement Mapping
 
@@ -39,9 +39,9 @@ The following values come from the sealed demo logs and runtime summary. They de
 | Raw video stream originates from A | Frames are captured on Raspberry Pi through Picamera2 and the IMX708 camera |
 | A performs initial computation/preprocessing | Frame-rate control, 640x360 sizing, CLAHE enhancement, mild sharpening, and JPEG compression run on Raspberry Pi |
 | Data flows from A to B over Wi-Fi | Raspberry Pi sends frames to the laptop Flask service using HTTP POST over the local network |
-| B runs neural-network-based AI | Laptop runs OpenCV YuNet pre-trained ONNX neural face detector |
-| Useful analysis results | Face count, bounding boxes, confidence scores, AI inference time, FPS estimate, annotated stream, and logs |
-| Code repository + documentation + demo video | Source code, setup files, `docs/`, sealed logs, screenshots, hardware photo, and demo video are included |
+| B runs a neural-network-based AI algorithm | Laptop runs the OpenCV YuNet pre-trained ONNX neural face detector |
+| System outputs useful analysis results | Face count, bounding boxes, confidence scores, AI inference time, FPS estimate, annotated stream, and logs |
+| Code repository + necessary documentation + demo video | Source code, setup files, `docs/`, sealed logs, screenshots, hardware photo, and demo video are included |
 | No report/PPT required | The repository focuses on source code, necessary documentation, sealed logs, screenshots, hardware photo, and recorded real-device demo video |
 
 ## Device Responsibilities
@@ -148,9 +148,7 @@ This model is not self-trained in this project. It is used as an existing pre-tr
 
 ## Third-party Model Note
 
-- The neural detector is the pre-trained OpenCV YuNet ONNX face detection model.
-- The model was not trained from scratch in this project.
-- The project contribution focuses on system integration, Raspberry Pi edge-side preprocessing, Wi-Fi frame transmission, laptop-side neural inference, dashboard visualization, and logging.
+This project uses the pre-trained OpenCV YuNet ONNX face detection model. The model was not trained from scratch in this project. The contribution of this project focuses on two-device system integration, Raspberry Pi edge-side preprocessing, Wi-Fi frame transmission, laptop-side neural inference, dashboard visualization, and logging.
 
 ## Output
 
@@ -172,6 +170,10 @@ The system outputs:
 
 The demo uses a simple shared token in the HTTP form data to reject unauthorized local uploads. This is suitable only for a local network classroom/demo setting. It is not a production authentication design.
 
+### Demo Token Note
+
+The `SHARED_TOKEN` used in the scripts is a placeholder for local-network demo validation, not a private production credential. For real deployment, it should be replaced by an environment variable or a proper authentication mechanism.
+
 ## Demo Video and Screenshots
 
 Demo media is stored in `media/`:
@@ -184,13 +186,15 @@ The video was captured from the real Raspberry Pi and laptop hardware test corre
 
 ## Further Improvements for Requirement 9
 
-This project already strengthens the demo in the directions usually expected by the additional improvement item:
+This project includes several additional design choices beyond the basic two-device pipeline. These are local demo enhancements and should not be interpreted as a production-grade system.
 
-- Functionality: two-device video stream, edge preprocessing, laptop neural face detection, and annotated output.
-- Real-time behavior: FPS estimate, average FPS, AI latency, and frame size are measured and shown.
-- Practicality: browser dashboard, MJPEG annotated stream, screenshots, hardware photo, and recorded demo video are included.
-- Stability: fixed dashboard layout, rolling averages, key-frame saving, and CSV/JSON logs are used.
-- Security: a simple shared token is used for the local-network demo.
+| Direction          | Implementation                                                                                                                             |
+| ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------ |
+| Functionality      | Raspberry Pi video capture, edge-side preprocessing, laptop-side neural face detection, annotated output, JSON response, and CSV/JSON logs |
+| Real-time behavior | Runtime FPS estimate, rolling average FPS, laptop AI latency, frame size, and Pi-side capture/encode/upload time                           |
+| Practicality       | Browser-based dashboard, MJPEG annotated stream, demo video, hardware photo, and archived demo logs                                        |
+| Stability          | Fixed dashboard layout, rolling averages, exception handling, and selective key-frame saving instead of saving every frame                 |
+| Security           | A simple shared token is used for local-network demo request validation                                                                    |
 
 ## Logs Explanation
 
@@ -201,6 +205,10 @@ Demo logs are stored in `logs/`:
 - `logs/client_stream_log_demo.csv`: Raspberry Pi client upload log, including capture, preprocessing, encoding, upload timing, HTTP status, and returned detection summary.
 
 Runtime executions may also generate `logs/stream_detection_log.csv`, `logs/runtime_summary.json`, `stream_received/`, and `stream_annotated/`. Generated frame folders are ignored by Git to avoid committing large raw/annotated frame dumps.
+
+### Bounding Box Note
+
+The archived demo logs store the bounding boxes returned by the neural detector. In some frames, a raw detector box may slightly exceed the image boundary. This does not affect the displayed video frame, but a production version should clip all bounding boxes to the valid image range before saving logs.
 
 ## How to Run: Laptop Side
 
@@ -230,8 +238,8 @@ http://10.253.24.73:5000/
 Copy or clone the repository to the Raspberry Pi, then run:
 
 ```bash
-cd ~/edge_pi_project
-cd raspberry_pi
+git clone https://github.com/wwdwwdwwdwwdwwd/pi-laptop-edge-ai-video.git
+cd pi-laptop-edge-ai-video/raspberry_pi
 bash setup_pi.sh
 python3 pi_video_stream_upload.py
 ```
@@ -258,6 +266,7 @@ Replace the example IP with the actual laptop IP on the same Wi-Fi/hotspot netwo
 - Add automatic laptop IP configuration or discovery.
 - Add HTTPS or stronger local authentication.
 - Add multi-person tracking IDs across frames.
+- Clip all detector bounding boxes to valid image coordinates before writing production logs.
 - Add bandwidth adaptation for unstable Wi-Fi.
 - Add more AI analytics, such as face presence duration or attention-state estimation, if allowed by the assessment scope and privacy requirements.
 

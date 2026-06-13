@@ -33,11 +33,11 @@ The laptop script listens on `0.0.0.0:5000` and expects the YuNet model at:
 
 ## Raspberry Pi Side: Device A
 
-Copy or clone this repository to the Raspberry Pi. From the Raspberry Pi project directory:
+Copy or clone this repository to the Raspberry Pi, then enter the Raspberry Pi script directory:
 
 ```bash
-cd ~/edge_pi_project
-cd raspberry_pi
+git clone https://github.com/wwdwwdwwdwwdwwd/pi-laptop-edge-ai-video.git
+cd pi-laptop-edge-ai-video/raspberry_pi
 bash setup_pi.sh
 python3 pi_video_stream_upload.py
 ```
