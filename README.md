@@ -8,13 +8,14 @@ The demo is designed for the required assessment format: code repository, necess
 
 ## Demo Preview
 
-[![Web dashboard preview](media/web_demo_screenshot.png)](media/demo_system_run.mp4)
+The screenshot below shows the web dashboard of the running system.
 
-Click the screenshot above to open the recorded system demo video.
+![Web dashboard preview](media/web_demo_screenshot.png)
 
-* Demo video: [`media/demo_system_run.mp4`](media/demo_system_run.mp4)
-* Hardware setup: [`media/hardware_setup.jpg`](media/hardware_setup.jpg)
-* Web dashboard screenshot: [`media/web_demo_screenshot.png`](media/web_demo_screenshot.png)
+The recorded system demo video is available here: [`media/demo_system_run.mp4`](media/demo_system_run.mp4).
+
+- Hardware setup: [`media/hardware_setup.jpg`](media/hardware_setup.jpg)
+- Web dashboard screenshot: [`media/web_demo_screenshot.png`](media/web_demo_screenshot.png)
 
 ## Demo Performance Snapshot
 
