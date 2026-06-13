@@ -1,0 +1,33 @@
+{
+  "ok": true,
+  "status": "receiving",
+  "security": "token_required",
+  "ai_model": "OpenCV YuNet ONNX neural face detector",
+  "device": "raspberry_pi_4b_picamera2",
+  "frame_id": "218",
+  "num_faces": 1,
+  "detections": [
+    {
+      "id": 1,
+      "type": "face",
+      "x": 117,
+      "y": 19,
+      "w": 301,
+      "h": 379,
+      "score": 0.931
+    }
+  ],
+  "server_inference_ms": 95.31,
+  "width": 640,
+  "height": 360,
+  "image_size_bytes": 18553,
+  "fps_est": 4.21,
+  "avg_fps": 5.02,
+  "avg_server_ai_ms": 37.34,
+  "avg_image_size_kb": 18.4,
+  "face_detection_rate": 1.0,
+  "client_capture_ms": "4.12",
+  "client_encode_ms": "8.17",
+  "last_update": "20260614_003255_698922",
+  "annotated_file": "stream_annotated\\annotated_yunet_20260614_003255_698922_f218.jpg"
+}
